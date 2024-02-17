@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css
+		" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm
+		" crossorigin="anonymous">
+		</head>
+<body>
+
+
+   
+    <div class="center-container">
+        <div class="container ">
+            <h1>Add Student</h1>
+            
+<span id="emailError"></span>
+
+<span id="topicError"></span>
+<span id="nameError"></span>
+            <form action ="#" th:action="@{/user/saveStudent}" th:object="${student}" method="post" onsubmit="return validateForm()">
+              <!--   <div class="form-group">
+                    <label for="id">ID:</label>
+                    <input type="text" class="form-control" id="id" name="id" placeholder="Enter ID">
+                </div> -->
+                
+                 <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text"  class="form-control" th:field="*{name}" id="name"   placeholder="Enter Your name" required>
+                </div>
+                 <div class="form-group">
+                    <label for"email">Email:</label>
+                    <input type="email"  class="form-control" th:field="*{email}" id="email"  placeholder="Enter Your Email" required>
+                </div>
+              
+                <div class="form-group">
+                    <label for="price">topic:</label>
+                    <input type="text"  class="form-control" th:field="*{topic}" id="topic" placeholder="Enter Topic" pattern="^[A-Za-z\s'-]{1,50}$"required>
+                </div>
+                 
+                
+                
+                 <div class="container text-center">
+             
+                <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+               
+               
+            </form>
+        </div>
+    </div>
+    <script>
+    function validateForm() {
+        var nameInput = document.getElementById('name');
+        var emailInput = document.getElementById('email');
+        var topicInput = document.getElementById('topic');
+        
+        var nameError = document.getElementById('topicError');
+        var nameError = document.getElementById('nameError');
+        var emailError = document.getElementById('emailError');
+        var namePattern = /^[A-Za-z\s'-]{3,50}$/;
+        var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (!namePattern.test(nameInput.value)) {
+          //  nameError.textContent = 'Invalid name format';
+           alert("Invalid Name format");
+            return false;
+        }
+
+        if (!emailPattern.test(emailInput.value)) {
+           // emailError.textContent = 'Invalid email format';
+           alert("Invalid Email format");
+            return false;
+        }
+
+ if (!namePattern.test(topicInput.value)) {
+           // emailError.textContent = 'Invalid email format';
+           alert("Invalid topic format");
+            return false;
+        }
+
+        nameError.textContent = '';
+        emailError.textContent = '';
+        topicError.textContent='';
+        return true;
+    }
+</script>
+</body>
+</html>
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Student Management System</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css
+		" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm
+		" crossorigin="anonymous">
+		
+		<style>
+			 #btn{
+				 color: darkgreen;
+				 border-color: black;
+			 }
+		</style>
+	</head>
+	<body>
+		<div align="center" class="container my-2">
+			
+			<h3 align="center"><span th:text="${role}"></span></h3>
+			<h3 align="center"><span th:text="${user}"></span></h3>
+			<h1>Students List</h1>
+			<table border="1" class="table table-striped table-responsive-md">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Student Name</th>
+						<th>Email</th>
+						<th>Topic Name</th>
+						<th>Action</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="student : ${listStudents}">
+						<td th:text ="${student.id}"></td>
+						<td th:text ="${student.name}"></td>
+						<td th:text ="${student.email}"></td>
+						<td th:text ="${student.topic}"></td>
+						<td><a th:href="@{/user/update_form/{id}(id=${student.id})}" class="btn btn-primary">Update</a>
+						<a th:href="@{/user/delete_form/{id}(id=${student.id})}" class="btn btn-danger" >Delete</a></td>
+						
+						
+					</tr>
+					
+				</tbody>
+			</table>
+			<div class="container text-center">
+				<a th:href="@{/user/add_Student}"  class="btn btn-outline-success">Add Student</a>
+				<a href="/logout" class="btn btn-outline-success">Logout</a>
+				
+				</div>
+				
+		</div>
+		
+	</body>
+</html>
